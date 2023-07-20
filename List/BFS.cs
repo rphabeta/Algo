@@ -10,30 +10,37 @@ public class ShortestPath
 
     public static void Main(string[] args)
     {
-        string[] input1 = Console.ReadLine().Split(' ');
-        y = int.Parse(input1[0]);
-        x = int.Parse(input1[1]);
+       string[] input = Console.ReadLine().Split();
+        n = int.Parse(input[0]);  // 사용자가 입력하는 배열 X의 크기
+        m = int.Parse(input[1]);  // 사용자가 입력하는 배열 Y의 크기
 
-        string[] input2 = Console.ReadLine().Split(' ');
-        sy = int.Parse(input2[0]); // start y
-        sx = int.Parse(input2[1]); // start x
+        string[] input2 = Console.ReadLine().Split();
+        sy = int.Parse(input2[0]); // 출발지 y
+        sx = int.Parse(input2[1]); // 출발지 x
 
-        string[] input3 = Console.ReadLine().Split(' ');
-        ey = int.Parse(input3[0]);
-        ex = int.Parse(input3[1]);
+        string[] input3 = Console.ReadLine().Split();
+        ey = int.Parse(input3[0]); // 목적지 y
+        ex = int.Parse(input3[1]); // 목적지 x
 
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) // 배열을 생성한다.
         {
             string[] row = Console.ReadLine().Split();
-            for (int j = 0; j < m; j++)
+            for(int j = 0; j < m; j++)
             {
                 a[i, j] = int.Parse(row[j]);
             }
         }
+
+        Bfs(sy, sx);
+    }
+
+    static void Bfs(int sy, int sx)
+    {
+        visited[y, x] = 1;
         Queue<Tuple<int, int>> q = new Queue<Tuple<int, int>>();
-        visited[sy, sx] = 1;
+
         q.Enqueue(new Tuple<int, int>(sy, sx));
-        while(q.Count > 0)
+        while(q.Count() > 0)
         {
             Tuple<int, int> pair = q.Dequeue();
             y = pair.Item1;
@@ -43,14 +50,16 @@ public class ShortestPath
             {
                 int ny = y + dy[i];
                 int nx = x + dx[i];
+
                 if (ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny, nx] == 0) continue;
                 if (visited[ny, nx] != 0) continue;
-                visited[ny, nx] = visited[x, y] + 1;
+                visited[ny, nx] = visited[y, x] + 1;
                 q.Enqueue(new Tuple<int, int>(ny, nx));
             }
         }
         Console.WriteLine(visited[ey, ex]);
-        for(int i = 0; i < n; i++)
+        // 최단거리 디버깅
+        for (int i = 0; i < n; i++)
         {
             for(int j = 0; j < m; j++)
             {
@@ -60,7 +69,3 @@ public class ShortestPath
         }
     }
 }
-
-
-
-
