@@ -17,11 +17,19 @@ namespace ExhaustiveSearchFor
             for (int i = 2400; i < INF; i++)
             {
                 string a = i.ToString();
+                cnt++;
+                if (n == cnt)
+                {
+                    Console.WriteLine(a);
+                    break;
+                }
+                /* debugging
                 if (a.Contains("2400"))
                 {
                     cnt++;
                     Console.WriteLine(cnt + " : " + a);
                 }
+                */
             }
         }
     }
