@@ -11,10 +11,16 @@ int main(){
     cin >> n;
     for(int i = 2400; i < INF; i++){
         string a = to_string(i);
+        cnt++;
+        if(n == cnt){
+           cout << a << '\n';
+           break;
+        /* debugging
         if(a.find("2400") != string::npos){
             cnt++;
             cout << cnt << " : " << a << '\n';
         }
+        */
     }
     return 0;
 }
