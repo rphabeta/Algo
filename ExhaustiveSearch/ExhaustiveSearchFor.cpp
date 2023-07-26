@@ -15,7 +15,7 @@ int main(){
         if(n == cnt){
            cout << a << '\n';
            break;
-        /* debugging
+        /* debugging!
         if(a.find("2400") != string::npos){
             cnt++;
             cout << cnt << " : " << a << '\n';
